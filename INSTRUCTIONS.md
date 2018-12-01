@@ -12,7 +12,7 @@ share comments or instructions, please include them in a README.
 
 ## Commands
 
-| Example  | Second Header |
+| Example  | Description |
 | ------------- | ------------- |
 | C w h  | Create a new canvas of width w and height h  |
 | L x1 y1 x2 y2| Draw a new line from coordinates (x1, y1) to (x2, y2) horizontally or vertically. Lines are made up of the x characte
@@ -29,35 +29,35 @@ A sample run of the program is show below. The user input is prefixed with enter
 ```
 enter command: C 20 5
 ----------------------
-| |
-| |
-| |
-| |
-| |
+|                    |
+|                    |
+|                    |
+|                    |
+|                    |
 ----------------------
 enter command: L 1 3 7 3
 ----------------------
-| |
-| |
-|xxxxxxx |
-| |
-| |
+|                    |
+|                    |
+|xxxxxxx             |
+|                    |
+|                    |
 ----------------------
 enter command: L 7 1 7 3
 ----------------------
-| x |
-| x |
-|xxxxxxx |
-| |
-| |
+|      x             |
+|      x             |
+|xxxxxxx             |
+|                    |
+|                    |
 ----------------------
 enter command: R 15 2 20 5
 ----------------------
-| x |
-| x xxxxxx|
-|xxxxxxx x x|
-| x x|
-| xxxxxx|
+|      x             |
+|      x       xxxxxx|
+|xxxxxxx       x    x|
+|              x    x|
+|              xxxxxx|
 ----------------------
 enter command: Q
 
