@@ -16,4 +16,9 @@ class CommandParserShould {
     void recognise_a_line() {
         assertThat(new CommandParser().interpret("L 1 3 7 3"), is(new Line(1, 3, 7, 3)));
     }
+
+    @Test
+    void recognise_a_rectangle() {
+        assertThat(new CommandParser().interpret("R 2 5 6 7"), is(new Rectangle(2, 5, 6, 7)));
+    }
 }

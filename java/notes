@@ -1,0 +1,5 @@
+- a canvas would clear the screen
+- what if coordinates of line do not represent a straight line?
+- what if rectangle coordinates do not make sense?
+- what if a try to draw a line without a canvas?
+-
