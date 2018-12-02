@@ -1,7 +1,15 @@
 package cpaint;
 
-public class Application {
+import java.util.Scanner;
+
+public class ConsolePaint {
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        new ConsolePaint().executeWith(null);
     }
+
+    public void executeWith(Scanner inputSource) {
+        String name = inputSource.nextLine();
+        System.out.printf("Hello %s!", name);
+    }
+
 }
