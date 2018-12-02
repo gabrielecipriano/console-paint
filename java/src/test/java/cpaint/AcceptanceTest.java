@@ -17,20 +17,24 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 class AcceptanceTest {
     @Test
-    void spike_system_out() throws Exception {
-        check(withInput("Gabriele", "Giovanni"),
-                outputIs("What's your name?: ",
-                        "Hello Gabriele!",
-                        "What's your name again?: ",
-                        "Oh ok Giovanni, nice to meet you"));
+    void draw_a_canvas() throws Exception {
+        check(withInput("C 20 5"),
+
+                outputIs("enter command: ",
+                        "----------------------",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "----------------------"));
     }
 
-    private void check(Stream<String> inputStream, Stream<String> outputs) throws IOException {
+    private void check(Stream<String> inputs, Stream<String> outputs) throws IOException {
         executeTrappingSystemOut(
                 (consoleOutput) -> {
                     new ConsolePaint()
-                            .executeWith(new Scanner(
-                                    new StringInputStream(join(inputStream))));
+                            .executeWith(new Scanner(new StringInputStream(join(inputs))));
 
 
                     assertThat(consoleOutput.toString(), is(join(outputs)));
