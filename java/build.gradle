@@ -3,6 +3,7 @@ apply plugin: 'application'
 
 mainClassName = "cpaint.ConsolePaint"
 
+
 repositories {
     mavenCentral()
 }
@@ -15,6 +16,12 @@ dependencies {
 
 
     testCompile "org.hamcrest:hamcrest-library:1.3"
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'cpaint.ConsolePaint'
+    }
 }
 
 test {
