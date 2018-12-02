@@ -59,7 +59,7 @@ class AcceptanceTest {
     private void check(Stream<String> inputs, Stream<String> outputs) throws IOException {
         executeTrappingSystemOut(
                 (consoleOutput) -> {
-                    new ConsolePaint((input) -> System.out.print(input), new CommandParser())
+                    new ConsolePaint(System.out::print, new CommandParser())
                             .executeWith(new Scanner(new StringInputStream(join(inputs))));
 
 
