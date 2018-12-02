@@ -22,7 +22,7 @@ class ConsolePaintShould {
 
     @Test
     void draw_a_canvas_with_C_command() {
-        String canvasCommand = "C 3 2";
+        var canvasCommand = "C 3 2";
 
         when(commandParser.interpret(canvasCommand))
         .thenReturn(new Canvas(3, 2));

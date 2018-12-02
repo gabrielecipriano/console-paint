@@ -1,6 +1,11 @@
 package cpaint;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static java.util.Arrays.asList;
 
 public class Canvas implements Command {
     private final int w;
@@ -13,10 +18,25 @@ public class Canvas implements Command {
 
     @Override
     public String representation() {
-        return "-----" + System.lineSeparator() +
-                "|   |" + System.lineSeparator() +
-                "|   |" + System.lineSeparator() +
-                "-----";
+        var horizontalSide = line("-");
+        var verticalSide = "|   |";
+
+        var drawLines = asList(
+                horizontalSide,
+                verticalSide,
+                verticalSide,
+                horizontalSide);
+
+
+        return join(drawLines);
+    }
+
+    public String line(final String symbol) {
+        return symbol + "----";
+    }
+
+    public String join(List<String> draw) {
+        return draw.stream().collect(Collectors.joining(System.lineSeparator()));
     }
 
     @Override

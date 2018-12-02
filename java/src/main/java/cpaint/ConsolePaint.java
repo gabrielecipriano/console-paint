@@ -19,8 +19,8 @@ public class ConsolePaint {
 
     public void executeWith(Scanner inputSource) {
         screen.print("enter command: " + System.lineSeparator());
-        String input = inputSource.nextLine();
-        Command command = commandParser.interpret(input);
+        var input = inputSource.nextLine();
+        var command = commandParser.interpret(input);
         screen.print(command.representation());
     }
 

@@ -20,8 +20,8 @@ public class CommandParser {
     }
 
     public Map<String, String> compilePattern(String input, String canvasPattern) {
-        List<String> canvasComponents = asList(canvasPattern.split(" "));
-        List<String> inputComponents = asList(input.split(" "));
+        var canvasComponents = asList(canvasPattern.split(" "));
+        var inputComponents = asList(input.split(" "));
 
         return IntStream.range(0, inputComponents.size())
                 .boxed()
