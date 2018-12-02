@@ -24,7 +24,7 @@ class ConsolePaintShould {
     void draw_a_canvas_with_C_command() {
         String canvasCommand = "C 3 2";
 
-        when(commandParser.parse(canvasCommand))
+        when(commandParser.interpret(canvasCommand))
         .thenReturn(new Canvas(3, 2));
 
         new ConsolePaint(screen, commandParser)
