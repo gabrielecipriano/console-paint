@@ -1,6 +1,7 @@
 package cpaint;
 
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -12,7 +13,7 @@ class CommandParser {
     private static final String WHITESPACE = " ";
 
     Command interpret(String input) {
-        return buildCommandWith(input, rules(
+        return match(input, rules(
                 new PatternRule("Q", map -> new QuitCommand()),
 
                 new PatternRule("C w h", (map)
@@ -30,20 +31,21 @@ class CommandParser {
         ));
     }
 
-    private Command buildCommandWith(String input, Map<Character, PatternRule> stringPatternRuleMap) {
+    private Command match(String input, Map<Character, PatternRule> rules) {
         char commandDescriptor = input.charAt(0);
 
-        return matchInputWith(input,
-                stringPatternRuleMap.get(commandDescriptor).pattern,
-                stringPatternRuleMap.get(commandDescriptor).commandBuilder);
+        return Optional.ofNullable(rules.get(commandDescriptor))
+                .map((rule) ->
+                        buildCommandWith(input, rule.pattern, rule.commandBuilder))
+                .orElse(new UnrecognizedCommand());
     }
 
-    private Map<Character, PatternRule> rules(PatternRule ... patternRules) {
+    private Map<Character, PatternRule> rules(PatternRule... patternRules) {
         return Stream.of(patternRules)
                 .collect(toMap(PatternRule::commandDescriptor, (pr) -> pr));
     }
 
-    private Command matchInputWith(String input, String canvasPattern, Function<Map<String, String>, Command> commandBuilder) {
+    private Command buildCommandWith(String input, String canvasPattern, Function<Map<String, String>, Command> commandBuilder) {
         return commandBuilder.apply(compilePattern(input, canvasPattern));
     }
 
