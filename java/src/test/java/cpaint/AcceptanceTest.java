@@ -4,35 +4,62 @@ import org.apache.tools.ant.filters.StringInputStream;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Scanner;
+import java.util.function.Consumer;
+import java.util.stream.Stream;
 
+import static java.lang.System.lineSeparator;
+import static java.util.stream.Collectors.joining;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 class AcceptanceTest {
     @Test
     void spike_system_out() throws Exception {
+        check(withInput("Gabriele", "Giovanni"),
+                outputIs("What's your name?: ",
+                        "Hello Gabriele!",
+                        "What's your name again?: ",
+                        "Oh ok Giovanni, nice to meet you"));
+    }
+
+    private void check(Stream<String> inputStream, Stream<String> outputs) throws IOException {
+        executeTrappingSystemOut(
+                (consoleOutput) -> {
+                    new ConsolePaint()
+                            .executeWith(new Scanner(
+                                    new StringInputStream(join(inputStream))));
+
+
+                    assertThat(consoleOutput.toString(), is(join(outputs)));
+                });
+    }
+
+    private void executeTrappingSystemOut(Consumer<ByteArrayOutputStream> test) throws IOException {
         PrintStream originalOut = System.out;
 
         try (ByteArrayOutputStream consoleOutput = new ByteArrayOutputStream();
              PrintStream printStream = new PrintStream(consoleOutput)) {
             System.setOut(printStream);
 
-            new ConsolePaint()
-                    .executeWith(new Scanner(
-                            new StringInputStream(
-                                    "Gabriele" + System.lineSeparator() +
-                                            "Giovanni")));
-
-            assertThat(consoleOutput.toString(), is(
-                    "What's your name?: " + System.lineSeparator() +
-                    "Hello Gabriele!" + System.lineSeparator() +
-                    "What's your name again?: " + System.lineSeparator() +
-                    "Oh ok Giovanni, nice to meet you"));
+            test.accept(consoleOutput);
 
         } finally {
             System.setOut(originalOut);
         }
+    }
+
+    private Stream<String> outputIs(String... outputs) {
+        return Stream.of(outputs);
+    }
+
+    private Stream<String> withInput(String... inputs) {
+        return Stream.of(inputs);
+    }
+
+    private String join(Stream<String> inputStream) {
+        return inputStream.collect(joining(lineSeparator()));
     }
 }
