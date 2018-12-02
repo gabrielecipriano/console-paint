@@ -2,16 +2,26 @@ package cpaint;
 
 import java.util.Scanner;
 
-import static java.lang.String.format;
-
 public class ConsolePaint {
+    private Screen screen;
+    private CommandParser commandParser;
+
     public static void main(String[] args) {
-        new ConsolePaint().executeWith(new Scanner(System.in));
+        new ConsolePaint(System.out::print,
+                new CommandParser())
+                .executeWith(new Scanner(System.in));
+    }
+
+    public ConsolePaint(Screen screen, CommandParser commandParser) {
+        this.screen = screen;
+        this.commandParser = commandParser;
     }
 
     public void executeWith(Scanner inputSource) {
-        String command = inputSource.nextLine();
-        System.out.printf("I should have executed command: %s%n", command);
+        screen.print("enter command: " + System.lineSeparator());
+        String input = inputSource.nextLine();
+        Command command = commandParser.parse(input);
+        screen.print(command.representation());
     }
 
 }
