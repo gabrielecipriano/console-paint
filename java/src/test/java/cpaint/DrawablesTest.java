@@ -19,8 +19,7 @@ class DrawablesTest {
         Canvas biggerCanvas = new Canvas(3, 2);
 
         assertThat(biggerCanvas.representation(),
-                is(
-                        "-----" + System.lineSeparator() +
+                is("-----" + System.lineSeparator() +
                                 "|   |" + System.lineSeparator() +
                                 "|   |" + System.lineSeparator() +
                                 "-----"

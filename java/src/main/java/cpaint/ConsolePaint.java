@@ -12,12 +12,12 @@ public class ConsolePaint {
                 .executeWith(new Scanner(System.in));
     }
 
-    public ConsolePaint(Screen screen, CommandParser commandParser) {
+    ConsolePaint(Screen screen, CommandParser commandParser) {
         this.screen = screen;
         this.commandParser = commandParser;
     }
 
-    public void executeWith(Scanner inputSource) {
+    void executeWith(Scanner inputSource) {
         screen.print("enter command: ");
         while (inputSource.hasNext()) {
             var input = inputSource.nextLine();

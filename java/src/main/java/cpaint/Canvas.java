@@ -10,7 +10,7 @@ public class Canvas implements Command {
     private final int w;
     private final int h;
 
-    public Canvas(int w, int h) {
+    Canvas(int w, int h) {
         this.w = w;
         this.h = h;
     }
@@ -25,7 +25,7 @@ public class Canvas implements Command {
         return join(lines);
     }
 
-    public List<String> buildWithBorders(String horizontalSide, String verticalSide) {
+    private List<String> buildWithBorders(String horizontalSide, String verticalSide) {
         var lines = new ArrayList<String>();
         lines.add(horizontalSide);
         IntStream.range(0, h).forEach(i -> lines.add(verticalSide));
@@ -33,11 +33,11 @@ public class Canvas implements Command {
         return lines;
     }
 
-    public String line(final String symbol, int count) {
+    private String line(final String symbol, int count) {
         return symbol.repeat(count);
     }
 
-    public String join(List<String> draw) {
+    private String join(List<String> draw) {
         return draw.stream().collect(Collectors.joining(System.lineSeparator()));
     }
 
