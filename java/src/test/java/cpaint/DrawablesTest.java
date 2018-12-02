@@ -13,7 +13,6 @@ class DrawablesTest {
         assertThat(canvas.representation(),
                 is("----" + System.lineSeparator() +
                         "|  |" + System.lineSeparator() +
-                        "|  |" + System.lineSeparator() +
                         "----"
                 ));
 

@@ -27,7 +27,8 @@ class AcceptanceTest {
                         "|                    |",
                         "|                    |",
                         "|                    |",
-                        "----------------------"));
+                        "----------------------",
+                        "enter command: "));
     }
 
     private void check(Stream<String> inputs, Stream<String> outputs) throws IOException {

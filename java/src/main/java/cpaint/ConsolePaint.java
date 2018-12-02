@@ -18,10 +18,13 @@ public class ConsolePaint {
     }
 
     public void executeWith(Scanner inputSource) {
-        screen.print("enter command: " + System.lineSeparator());
-        var input = inputSource.nextLine();
-        var command = commandParser.interpret(input);
-        screen.print(command.representation());
+        screen.print("enter command: ");
+        while (inputSource.hasNext()) {
+            var input = inputSource.nextLine();
+            var command = commandParser.interpret(input);
+            screen.print(System.lineSeparator() + command.representation() + System.lineSeparator());
+            screen.print("enter command: ");
+        }
     }
 
 }

@@ -1,11 +1,10 @@
 package cpaint;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import static java.util.Arrays.asList;
 
 public class Canvas implements Command {
     private final int w;
@@ -18,21 +17,24 @@ public class Canvas implements Command {
 
     @Override
     public String representation() {
-        var horizontalSide = line("-");
-        var verticalSide = "|   |";
+        var horizontalSide = line("-", w + 2);
+        var verticalSide = "|" + line(" ", w) + "|";
 
-        var drawLines = asList(
-                horizontalSide,
-                verticalSide,
-                verticalSide,
-                horizontalSide);
+        var lines = buildWithBorders(horizontalSide, verticalSide);
 
-
-        return join(drawLines);
+        return join(lines);
     }
 
-    public String line(final String symbol) {
-        return symbol + "----";
+    public List<String> buildWithBorders(String horizontalSide, String verticalSide) {
+        var lines = new ArrayList<String>();
+        lines.add(horizontalSide);
+        IntStream.range(0, h).forEach(i -> lines.add(verticalSide));
+        lines.add(horizontalSide);
+        return lines;
+    }
+
+    public String line(final String symbol, int count) {
+        return symbol.repeat(count);
     }
 
     public String join(List<String> draw) {
