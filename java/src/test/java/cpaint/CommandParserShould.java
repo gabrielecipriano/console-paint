@@ -21,4 +21,9 @@ class CommandParserShould {
     void recognise_a_rectangle() {
         assertThat(new CommandParser().interpret("R 2 5 6 7"), is(new Rectangle(2, 5, 6, 7)));
     }
+
+    @Test
+    void recognise_quit_command() {
+        assertThat(new CommandParser().interpret("Q"), is(new QuitCommand()));
+    }
 }

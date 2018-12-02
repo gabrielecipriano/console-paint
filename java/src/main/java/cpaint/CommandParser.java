@@ -13,6 +13,8 @@ class CommandParser {
 
     Command interpret(String input) {
         return buildCommandWith(input, rules(
+                new PatternRule("Q", map -> new QuitCommand()),
+
                 new PatternRule("C w h", (map)
                         -> new Canvas(toInt(map.get("w")), toInt(map.get("h")))),
 
