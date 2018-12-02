@@ -11,11 +11,11 @@ import static java.util.stream.Collectors.toMap;
 public class CommandParser {
 
     public Command interpret(String input) {
-        return interpretWith(input,
+        return matchInputWith(input,
                 "C w h", (map) -> new Canvas(toInt(map.get("w")), toInt(map.get("h"))));
     }
 
-    public Command interpretWith(String input, String canvasPattern, Function<Map<String, String>, Command> commandBuilder) {
+    public Command matchInputWith(String input, String canvasPattern, Function<Map<String, String>, Command> commandBuilder) {
         return commandBuilder.apply(compilePattern(input, canvasPattern));
     }
 
