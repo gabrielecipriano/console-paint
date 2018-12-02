@@ -31,6 +31,31 @@ class AcceptanceTest {
                         "enter command: "));
     }
 
+    @Test
+    void draw_a_line_within_a_canvas() throws Exception {
+        check(withInput(
+                "C 20 5",
+                "L 1 3 7 3"),
+
+                outputIs("enter command: ",
+                        "----------------------",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "----------------------",
+                        "enter command: ",
+                        "----------------------",
+                        "|                    |",
+                        "|                    |",
+                        "|xxxxxxx             |",
+                        "|                    |",
+                        "|                    |",
+                        "----------------------"
+                        ));
+    }
+
     private void check(Stream<String> inputs, Stream<String> outputs) throws IOException {
         executeTrappingSystemOut(
                 (consoleOutput) -> {

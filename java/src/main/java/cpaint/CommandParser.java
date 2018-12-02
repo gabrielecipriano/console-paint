@@ -11,8 +11,17 @@ class CommandParser {
     private static final String WHITESPACE = " ";
 
     Command interpret(String input) {
-        return matchInputWith(input,
-                "C w h", (map) -> new Canvas(toInt(map.get("w")), toInt(map.get("h"))));
+        if (input.startsWith("C")) {
+            return matchInputWith(input,
+                    "C w h",
+                    (map) -> new Canvas(toInt(map.get("w")), toInt(map.get("h"))));
+        } else {
+            return matchInputWith(input,
+                    "L x1 y1 x2 y2",
+                    (map) -> new Line(
+                            toInt(map.get("x1")), toInt(map.get("y1")),
+                            toInt(map.get("x2")), toInt(map.get("y2"))));
+        }
     }
 
     private Command matchInputWith(String input, String canvasPattern, Function<Map<String, String>, Command> commandBuilder) {
