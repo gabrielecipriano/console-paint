@@ -35,7 +35,8 @@ class AcceptanceTest {
     void draw_a_line_within_a_canvas() throws Exception {
         check(withInput(
                 "C 20 5",
-                "L 1 3 7 3"),
+                "L 1 3 7 3",
+                "L 7 1 7 3"),
 
                 outputIs("enter command: ",
                         "----------------------",
@@ -53,6 +54,14 @@ class AcceptanceTest {
                         "|                    |",
                         "|                    |",
                         "----------------------",
+                        "enter command: ",
+                        "----------------------",
+                        "|      x             |",
+                        "|      x             |",
+                        "|xxxxxxx             |",
+                        "|                    |",
+                        "|                    |",
+                        "----------------------",
                         "enter command: "
                         ));
     }
@@ -62,7 +71,6 @@ class AcceptanceTest {
                 (consoleOutput) -> {
                     new ConsolePaint(System.out::print, new CommandParser())
                             .executeWith(new Scanner(new StringInputStream(join(inputs))));
-
 
                     assertThat(consoleOutput.toString(), is(join(outputs)));
                 });
