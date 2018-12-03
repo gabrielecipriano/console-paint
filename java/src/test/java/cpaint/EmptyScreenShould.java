@@ -28,11 +28,11 @@ class EmptyScreenShould {
     @Test
     void warn_user_that_line_and_rectangle_is_only_represented_within_a_canvas() {
         assertThat(new EmptyScreen()
-                .execute(new Line(1, 2, 3, 4)).render(),
+                        .execute(new Line(1, 2, 3, 4)).render(),
                 is("Line command is supported only within a canvas"));
 
         assertThat(new EmptyScreen()
-                .execute(new Rectangle(1, 2, 3, 4)).render(),
+                        .execute(new Rectangle(1, 2, 3, 4)).render(),
                 is("Rectangle command is supported only within a canvas"));
     }
 
@@ -40,19 +40,19 @@ class EmptyScreenShould {
     void switch_off() {
         assertFalse(new EmptyScreen()
                 .switchOff()
-        .isOn());
+                .isOn());
     }
 
     @Test
     void should_be_on_after_a_non_quit_command() {
         assertTrue(new EmptyScreen()
-                .execute(new Line(1,2,3,4))
+                .execute(new Line(1, 2, 3, 4))
                 .isOn());
         assertTrue(new EmptyScreen()
-                .execute(new Rectangle(1,2,3,4))
+                .execute(new Rectangle(1, 2, 3, 4))
                 .isOn());
         assertTrue(new EmptyScreen()
-                .execute(new Canvas(1,2))
+                .execute(new Canvas(1, 2))
                 .isOn());
         assertTrue(new EmptyScreen()
                 .execute(new UnsupportedCommand(""))

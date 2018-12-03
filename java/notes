@@ -1,6 +1,6 @@
 - a canvas would clear the console? done
 - what if a try to draw a line without a canvas? done
-- how to handle quit command with polymorphism?
+- how to handle quit command with polymorphism? no
 
 Edge Cases
 - what if rectangle coordinates do not make sense?
