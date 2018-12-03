@@ -38,7 +38,11 @@ class ScreenWithCanvas implements Screen {
 
     @Override
     public Screen drawRectangle(Rectangle rectangle) {
-        return new ScreenWithCanvas(this.screenState);
+        return this
+                .drawLine(new Line(rectangle.x1, rectangle.y1, rectangle.x1, rectangle.y2))
+                .drawLine(new Line(rectangle.x1, rectangle.y2, rectangle.x2, rectangle.y2))
+                .drawLine(new Line(rectangle.x2, rectangle.y1, rectangle.x2, rectangle.y2))
+                .drawLine(new Line(rectangle.x1, rectangle.y1, rectangle.x2, rectangle.y1));
     }
 
     @Override

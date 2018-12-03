@@ -41,4 +41,17 @@ class ScreenWithCanvasShould {
                         "|x  |" + System.lineSeparator() +
                         "-----"));
     }
+
+    @Test
+    void draw_a_rectangle_on_a_canvas() {
+        var screen = new ScreenWithCanvas(new Canvas(3, 3))
+                .drawRectangle(new Rectangle(1, 1, 3, 3));
+
+        assertThat(screen.render(), is(
+                        "-----" + System.lineSeparator() +
+                        "|xxx|" + System.lineSeparator() +
+                        "|x x|" + System.lineSeparator() +
+                        "|xxx|" + System.lineSeparator() +
+                        "-----"));
+    }
 }
