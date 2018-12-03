@@ -74,6 +74,16 @@ class CanvasRepresentationShould {
         }
 
         @Override
+        public Screen drawLine() {
+            return null;
+        }
+
+        @Override
+        public Screen drawRectangle() {
+            return null;
+        }
+
+        @Override
         public Screen execute(Command command) {
             return null;
         }

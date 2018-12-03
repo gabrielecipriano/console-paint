@@ -1,5 +1,7 @@
 package cpaint;
 
+import static java.lang.String.format;
+
 public class EmptyScreen implements Screen {
     private final String representation;
 
@@ -24,5 +26,19 @@ public class EmptyScreen implements Screen {
     @Override
     public Screen representText(String description) {
         return new EmptyScreen(description);
+    }
+
+    @Override
+    public Screen drawLine() {
+        return warnUnsupported("Line");
+    }
+
+    @Override
+    public Screen drawRectangle() {
+        return warnUnsupported("Rectangle");
+    }
+
+    private Screen warnUnsupported(String unsupportedCommand) {
+        return representText(format("%s command is supported only within a canvas", unsupportedCommand));
     }
 }

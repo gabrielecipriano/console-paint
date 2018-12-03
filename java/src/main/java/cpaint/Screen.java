@@ -6,4 +6,8 @@ public interface Screen {
     String representation();
 
     Screen representText(String description);
+
+    Screen drawLine();
+
+    Screen drawRectangle();
 }

@@ -22,7 +22,7 @@ public class Line implements Command {
 
     @Override
     public Screen executeWith(Screen screen) {
-        return null;
+        return screen.drawLine();
     }
 
     @Override

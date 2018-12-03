@@ -22,7 +22,7 @@ public class Rectangle implements Command{
 
     @Override
     public Screen executeWith(Screen screen) {
-        return null;
+        return screen.drawRectangle();
     }
 
     @Override
