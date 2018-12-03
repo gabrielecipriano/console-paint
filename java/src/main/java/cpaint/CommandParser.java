@@ -1,11 +1,13 @@
 package cpaint;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
+import static java.lang.String.format;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toMap;
 
@@ -32,12 +34,28 @@ class CommandParser {
     }
 
     private Command match(String input, Map<Character, PatternRule> rules) {
-        char commandDescriptor = input.charAt(0);
+        char commandDescriptor = commandDescriptor(input);
 
         return Optional.ofNullable(rules.get(commandDescriptor))
                 .map((rule) ->
                         buildCommandWith(input, rule.pattern, rule.commandBuilder))
-                .orElse(new UnrecognizedCommand());
+                .orElse(new UnsupportedCommand(format("Command descriptor {%s} does not match any known", commandDescriptor)));
+    }
+
+    private Command buildCommandWith(String input, String pattern, Function<Map<String, String>, Command> commandBuilder) {
+        List<String> inputComponents = asList(input.split(WHITESPACE));
+        List<String> patternComponent = asList(pattern.split(WHITESPACE));
+
+        if (inputComponents.size() != patternComponent.size()) {
+            return new UnsupportedCommand(
+                    format("{%s} command descriptor follows the following pattern: '%s'", commandDescriptor(input), pattern));
+        }
+
+        return commandBuilder.apply(compilePattern(patternComponent, inputComponents));
+    }
+
+    private char commandDescriptor(String input) {
+        return input.charAt(0);
     }
 
     private Map<Character, PatternRule> rules(PatternRule... patternRules) {
@@ -45,17 +63,10 @@ class CommandParser {
                 .collect(toMap(PatternRule::commandDescriptor, (pr) -> pr));
     }
 
-    private Command buildCommandWith(String input, String canvasPattern, Function<Map<String, String>, Command> commandBuilder) {
-        return commandBuilder.apply(compilePattern(input, canvasPattern));
-    }
-
-    private Map<String, String> compilePattern(String input, String canvasPattern) {
-        var canvasComponents = asList(canvasPattern.split(WHITESPACE));
-        var inputComponents = asList(input.split(WHITESPACE));
-
+    private Map<String, String> compilePattern(List<String> patternComponent, List<String> inputComponents) {
         return IntStream.range(0, inputComponents.size())
                 .boxed()
-                .collect(toMap(canvasComponents::get, inputComponents::get));
+                .collect(toMap(patternComponent::get, inputComponents::get));
     }
 
     private Integer toInt(String w) {
@@ -66,7 +77,7 @@ class CommandParser {
         final String pattern;
         final Function<Map<String, String>, Command> commandBuilder;
 
-        public PatternRule(String pattern, Function<Map<String, String>, Command> commandBuilder) {
+        PatternRule(String pattern, Function<Map<String, String>, Command> commandBuilder) {
             this.pattern = pattern;
             this.commandBuilder = commandBuilder;
         }

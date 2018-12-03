@@ -18,7 +18,25 @@ class CommandParserShould {
     }
 
     @Test
+    void fail_to_parse_expected_command_with_wrong_patterns() {
+        assertThat(commandParser.interpret("C 11 1 2"), is(
+                new UnsupportedCommand("{C} command descriptor follows the following pattern: 'C w h'")));
+
+        assertThat(commandParser.interpret("L 1 3 7"), is(
+                new UnsupportedCommand("{L} command descriptor follows the following pattern: 'L x1 y1 x2 y2'")));
+
+        assertThat(commandParser.interpret("R 1 2 3"), is(
+                new UnsupportedCommand("{R} command descriptor follows the following pattern: 'R x1 y1 x2 y2'")));
+
+        assertThat(commandParser.interpret("Q 23"), is(
+                new UnsupportedCommand("{Q} command descriptor follows the following pattern: 'Q'")));
+    }
+
+    @Test
     void fail_to_parse_unexpected_command() {
-        assertThat(commandParser.interpret("Z 2 1 3"), is(new UnrecognizedCommand()));
+        assertThat(commandParser.interpret("Z 2 1 3"), is(
+                new UnsupportedCommand("Command descriptor {Z} does not match any known")));
+        assertThat(commandParser.interpret("A"), is(
+                new UnsupportedCommand("Command descriptor {A} does not match any known")));
     }
 }
