@@ -19,8 +19,8 @@ class DSLAcceptanceTests {
     static void check(Stream<String> inputs, Stream<String> outputs) throws IOException {
         executeTrappingSystemOut(
                 (consoleOutput) -> {
-                    new ConsolePaint(System.out::print, new CommandParser())
-                            .executeWith(new Scanner(new StringInputStream(join(inputs))));
+
+                    ConsolePaint.compute(new StringInputStream(join(inputs)));
 
                     assertThat(consoleOutput.toString(), is(join(outputs)));
                 });

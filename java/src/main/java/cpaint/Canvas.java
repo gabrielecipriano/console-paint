@@ -17,14 +17,6 @@ public class Canvas implements Command {
     }
 
     @Override
-    public String toString() {
-        return "Canvas{" +
-                "w=" + w +
-                ", h=" + h +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

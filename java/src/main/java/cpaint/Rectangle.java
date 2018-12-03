@@ -21,16 +21,6 @@ public class Rectangle implements Command{
     }
 
     @Override
-    public String toString() {
-        return "Rectangle{" +
-                "x1=" + x1 +
-                ", y1=" + y1 +
-                ", x2=" + x2 +
-                ", y2=" + y2 +
-                '}';
-    }
-
-    @Override
     public int hashCode() {
         return Objects.hash(x1, y1, x2, y2);
     }

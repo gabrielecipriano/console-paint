@@ -1,12 +1,13 @@
 package cpaint;
 
 public class WarningScreen implements Screen{
+    private static final String NO_MESSAGE = "";
     private final Screen previousScreen;
     private final String warningMessage;
 
     WarningScreen(Screen previousScreen) {
         this.previousScreen = previousScreen;
-        this.warningMessage = "";
+        this.warningMessage = NO_MESSAGE;
     }
 
     private WarningScreen(Screen previousScreen, String warningMessage) {

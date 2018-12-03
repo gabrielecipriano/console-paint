@@ -1,23 +1,18 @@
 package cpaint;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
-public class ConsolePaint {
+class ConsolePaint {
     private Console console;
     private CommandParser commandParser;
 
-    public static void main(String[] args) {
-        new ConsolePaint(System.out::print,
-                new CommandParser())
-                .executeWith(new Scanner(System.in));
-    }
-
-    ConsolePaint(Console console, CommandParser commandParser) {
+    private ConsolePaint(Console console, CommandParser commandParser) {
         this.console = console;
         this.commandParser = commandParser;
     }
 
-    void executeWith(Scanner inputSource) {
+    private void executeWith(Scanner inputSource) {
         Screen screen = new EmptyScreen();
         console.print("enter command: ");
 
@@ -33,4 +28,9 @@ public class ConsolePaint {
         }
     }
 
+    static void compute(InputStream source) {
+        new ConsolePaint(System.out::print,
+                new CommandParser())
+                .executeWith(new Scanner(source));
+    }
 }
