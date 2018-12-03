@@ -47,7 +47,7 @@ public class WarningScreen implements Screen{
 
     @Override
     public Screen switchOff() {
-        return null;
+        return this;
     }
 
     @Override
