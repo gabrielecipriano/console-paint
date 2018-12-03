@@ -62,8 +62,32 @@ class AcceptanceTest {
                         "|                    |",
                         "|                    |",
                         "----------------------",
-                        "enter command: "
-                        ));
+                        "enter command: "));
+    }
+
+    @Test
+    void draw_a_rectangle_within_a_canvas() throws Exception {
+        check(withInput(
+                "C 20 5",
+                "R 15 2 20 5"),
+
+                outputIs("enter command: ",
+                        "----------------------",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "----------------------",
+                        "enter command: ",
+                        "----------------------",
+                        "|                    |",
+                        "|              xxxxxx|",
+                        "|              x    x|",
+                        "|              x    x|",
+                        "|              xxxxxx|",
+                        "----------------------",
+                        "enter command: "));
     }
 
     private void check(Stream<String> inputs, Stream<String> outputs) throws IOException {

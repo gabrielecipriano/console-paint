@@ -38,7 +38,7 @@ class ScreenWithCanvas implements Screen {
 
     @Override
     public Screen drawRectangle(Rectangle rectangle) {
-        return null;
+        return new ScreenWithCanvas(this.screenState);
     }
 
     @Override
