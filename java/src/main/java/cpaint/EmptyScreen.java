@@ -20,7 +20,7 @@ public class EmptyScreen implements Screen {
     }
 
     @Override
-    public String representation() {
+    public String render() {
         return representation;
     }
 

@@ -60,11 +60,11 @@ class CanvasRepresentationShould {
         }
 
         public void representWith(Console console) {
-            console.print(representation());
+            console.print(render());
         }
 
         @Override
-        public String representation() {
+        public String render() {
             return toList(this.screenState).stream().collect(Collectors.joining(System.lineSeparator()));
         }
 

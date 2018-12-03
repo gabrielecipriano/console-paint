@@ -12,17 +12,17 @@ class EmptyScreenShould {
         Screen screen = new EmptyScreen()
                 .execute(new UnsupportedCommand("this is the reason why I am unsupported"));
 
-        assertThat(screen.representation(), is("this is the reason why I am unsupported"));
+        assertThat(screen.render(), is("this is the reason why I am unsupported"));
     }
 
     @Test
     void warn_user_that_line_and_rectangle_is_only_represented_within_a_canvas() {
         assertThat(new EmptyScreen()
-                .execute(new Line(1, 2, 3, 4)).representation(),
+                .execute(new Line(1, 2, 3, 4)).render(),
                 is("Line command is supported only within a canvas"));
 
         assertThat(new EmptyScreen()
-                .execute(new Rectangle(1, 2, 3, 4)).representation(),
+                .execute(new Rectangle(1, 2, 3, 4)).render(),
                 is("Rectangle command is supported only within a canvas"));
     }
 }
