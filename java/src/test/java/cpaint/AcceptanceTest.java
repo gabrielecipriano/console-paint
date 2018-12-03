@@ -90,6 +90,39 @@ class AcceptanceTest {
                         "enter command: "));
     }
 
+    @Test
+    void resize_and_clear_canvas() throws Exception {
+        check(withInput(
+                "C 20 5",
+                "L 1 3 7 3",
+                "C 12 5"),
+
+                outputIs("enter command: ",
+                        "----------------------",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "----------------------",
+                        "enter command: ",
+                        "----------------------",
+                        "|                    |",
+                        "|                    |",
+                        "|xxxxxxx             |",
+                        "|                    |",
+                        "|                    |",
+                        "----------------------",
+                        "enter command: ",
+                        "--------------",
+                        "|            |",
+                        "|            |",
+                        "|            |",
+                        "|            |",
+                        "|            |",
+                        "--------------",
+                        "enter command: "));
+    }
     private void check(Stream<String> inputs, Stream<String> outputs) throws IOException {
         executeTrappingSystemOut(
                 (consoleOutput) -> {
