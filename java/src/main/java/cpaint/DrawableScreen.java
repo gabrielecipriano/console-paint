@@ -6,23 +6,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-class ScreenWithCanvas implements Screen {
+class DrawableScreen implements Screen {
     private final char[][] screenState;
     private final boolean isOn;
 
-    public ScreenWithCanvas(Canvas canvas) {
+    public DrawableScreen(Canvas canvas) {
         var lines = canvasRepresentedAsList(canvas.w, canvas.h);
 
         this.screenState = toCharArray(lines);
         this.isOn = true;
     }
 
-    private ScreenWithCanvas(char[][] newScreenState) {
+    private DrawableScreen(char[][] newScreenState) {
         this.screenState = newScreenState;
         this.isOn = true;
     }
 
-    private ScreenWithCanvas(char[][] screenState, boolean isOn) {
+    private DrawableScreen(char[][] screenState, boolean isOn) {
         this.screenState = screenState;
         this.isOn = isOn;
     }
@@ -39,9 +39,7 @@ class ScreenWithCanvas implements Screen {
 
     @Override
     public Screen drawLine(Line line) {
-        var newScreenState = drawLineOn(line, 'x', screenState.clone());
-
-        return new ScreenWithCanvas(newScreenState);
+        return drawLineWith(line, 'x');
     }
 
     @Override
@@ -55,12 +53,12 @@ class ScreenWithCanvas implements Screen {
 
     @Override
     public Screen drawCanvas(Canvas canvas) {
-        return new ScreenWithCanvas(canvas);
+        return new DrawableScreen(canvas);
     }
 
     @Override
     public Screen switchOff() {
-        return new ScreenWithCanvas(this.screenState, false);
+        return new DrawableScreen(this.screenState, false);
     }
 
     @Override
@@ -71,6 +69,12 @@ class ScreenWithCanvas implements Screen {
     @Override
     public Screen execute(Command command) {
         return command.executeWith(this);
+    }
+
+    private Screen drawLineWith(Line line, char symbol) {
+        char[][] newScreenState = drawLineOn(line, symbol, screenState.clone());
+
+        return new DrawableScreen(newScreenState);
     }
 
     private String render(char[][] screenState) {
@@ -130,7 +134,7 @@ class ScreenWithCanvas implements Screen {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ScreenWithCanvas that = (ScreenWithCanvas) o;
+        DrawableScreen that = (DrawableScreen) o;
         return Arrays.equals(screenState, that.screenState);
     }
 

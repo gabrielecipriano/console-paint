@@ -49,7 +49,7 @@ public class EmptyScreen implements Screen {
 
     @Override
     public Screen drawCanvas(Canvas canvas) {
-        return new ScreenWithCanvas(canvas);
+        return new DrawableScreen(canvas);
     }
 
     @Override

@@ -14,7 +14,7 @@ class EmptyScreenShould {
         var screenWithCanvas = new EmptyScreen()
                 .execute(new Canvas(1, 2));
 
-        assertThat(screenWithCanvas.render(), is(new ScreenWithCanvas(new Canvas(1, 2)).render()));
+        assertThat(screenWithCanvas.render(), is(new DrawableScreen(new Canvas(1, 2)).render()));
     }
 
     @Test
