@@ -17,7 +17,7 @@ public class Rectangle implements Command{
 
     @Override
     public Screen executeWith(Screen screen) {
-        return screen.drawRectangle();
+        return screen.drawRectangle(this);
     }
 
     @Override

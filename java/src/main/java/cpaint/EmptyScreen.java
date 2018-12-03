@@ -30,12 +30,12 @@ public class EmptyScreen implements Screen {
     }
 
     @Override
-    public Screen drawLine() {
+    public Screen drawLine(Line line) {
         return warnUnsupported("Line");
     }
 
     @Override
-    public Screen drawRectangle() {
+    public Screen drawRectangle(Rectangle rectangle) {
         return warnUnsupported("Rectangle");
     }
 

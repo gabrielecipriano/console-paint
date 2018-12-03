@@ -26,12 +26,12 @@ class ScreenWithCanvas implements Screen {
     }
 
     @Override
-    public Screen drawLine() {
+    public Screen drawLine(Line line) {
         return null;
     }
 
     @Override
-    public Screen drawRectangle() {
+    public Screen drawRectangle(Rectangle rectangle) {
         return null;
     }
 
@@ -42,11 +42,6 @@ class ScreenWithCanvas implements Screen {
 
     @Override
     public Screen execute(Command command) {
-        return null;
-    }
-
-
-    public ScreenWithCanvas drawLine(Line line) {
         return null;
     }
 

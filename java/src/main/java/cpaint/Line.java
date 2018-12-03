@@ -17,7 +17,7 @@ public class Line implements Command {
 
     @Override
     public Screen executeWith(Screen screen) {
-        return screen.drawLine();
+        return screen.drawLine(this);
     }
 
     @Override

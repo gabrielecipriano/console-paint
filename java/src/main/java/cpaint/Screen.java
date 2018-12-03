@@ -7,9 +7,9 @@ public interface Screen {
 
     Screen representText(String description);
 
-    Screen drawLine();
+    Screen drawLine(Line line);
 
-    Screen drawRectangle();
+    Screen drawRectangle(Rectangle rectangle);
 
     Screen drawCanvas(Canvas canvas);
 }
