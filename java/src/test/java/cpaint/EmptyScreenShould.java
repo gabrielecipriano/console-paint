@@ -8,7 +8,15 @@ import static org.hamcrest.Matchers.is;
 class EmptyScreenShould {
 
     @Test
-    void execute_unsupported_command() {
+    void draw_a_canvas() {
+        Screen screenWithCanvas = new EmptyScreen()
+                .execute(new Canvas(1, 2));
+
+        assertThat(screenWithCanvas, is(new ScreenWithCanvas(new Canvas(1, 2))));
+    }
+
+    @Test
+    void warn_user_of_an_unsupported_command() {
         Screen screen = new EmptyScreen()
                 .execute(new UnsupportedCommand("this is the reason why I am unsupported"));
 

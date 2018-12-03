@@ -27,7 +27,7 @@ public class Canvas implements Command {
 
     @Override
     public Screen executeWith(Screen screen) {
-        return null;
+        return screen.drawCanvas(this);
     }
 
     private List<String> buildWithBorders(String horizontalSide, String verticalSide) {

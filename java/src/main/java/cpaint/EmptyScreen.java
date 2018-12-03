@@ -39,6 +39,11 @@ public class EmptyScreen implements Screen {
         return warnUnsupported("Rectangle");
     }
 
+    @Override
+    public Screen drawCanvas(Canvas canvas) {
+        return new ScreenWithCanvas(canvas);
+    }
+
     private Screen warnUnsupported(String unsupportedCommand) {
         return representText(format("%s command is supported only within a canvas", unsupportedCommand));
     }

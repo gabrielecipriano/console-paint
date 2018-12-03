@@ -10,4 +10,6 @@ public interface Screen {
     Screen drawLine();
 
     Screen drawRectangle();
+
+    Screen drawCanvas(Canvas canvas);
 }
