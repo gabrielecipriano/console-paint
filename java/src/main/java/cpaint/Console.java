@@ -1,5 +1,5 @@
 package cpaint;
 
-public interface Screen {
+public interface Console {
     void print(String input);
 }

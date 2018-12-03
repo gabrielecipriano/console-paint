@@ -1,7 +1,6 @@
 package cpaint;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -16,20 +15,20 @@ import static org.mockito.Mockito.*;
 
 class ConsoleScreenShould {
 
-    private Screen screen;
+    private Console console;
 
     @BeforeEach
     void setUp() {
-        screen = mock(Screen.class);
+        console = mock(Console.class);
     }
 
     @Test
     void draw_a_canvas() {
         CanvasRepresentation canvasRepresentation = new CanvasRepresentation(new Canvas(3, 2));
 
-        canvasRepresentation.representWith(screen);
+        canvasRepresentation.representWith(console);
 
-        verify(screen)
+        verify(console)
                 .print( "-----" + System.lineSeparator() +
                         "|   |" + System.lineSeparator() +
                         "|   |" + System.lineSeparator() +
@@ -42,9 +41,9 @@ class ConsoleScreenShould {
                 new CanvasRepresentation(new Canvas(3, 2))
                 .drawLine(new Line(1, 2, 2, 2));
 
-        canvasRepresentation.representWith(screen);
+        canvasRepresentation.representWith(console);
 
-        verify(screen)
+        verify(console)
                 .print( "-----" + System.lineSeparator() +
                         "|   |" + System.lineSeparator() +
                         "|xx |" + System.lineSeparator() +
@@ -59,8 +58,8 @@ class ConsoleScreenShould {
             this.screenState = toBidimensionalCharArray(canvas);
         }
 
-        public void representWith(Screen screen) {
-            screen.print(toList(this.screenState).stream().collect(Collectors.joining(System.lineSeparator())));
+        public void representWith(Console console) {
+            console.print(toList(this.screenState).stream().collect(Collectors.joining(System.lineSeparator())));
         }
 
         private List<String> toList(Character[][] screenState) {

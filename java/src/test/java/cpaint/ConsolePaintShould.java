@@ -11,12 +11,12 @@ import static org.mockito.Mockito.*;
 
 class ConsolePaintShould {
 
-    private Screen screen;
+    private Console console;
     private CommandParser commandParser;
 
     @BeforeEach
     void setUp() {
-        screen = Mockito.mock(Screen.class);
+        console = Mockito.mock(Console.class);
         commandParser = mock(CommandParser.class);
     }
 
@@ -27,11 +27,11 @@ class ConsolePaintShould {
         when(commandParser.interpret(canvasCommand))
                 .thenReturn(new Canvas(3, 2));
 
-        new ConsolePaint(screen, commandParser)
+        new ConsolePaint(console, commandParser)
                 .executeWith(input(canvasCommand));
 
-        verify(screen, times(2)).print("enter command: ");
-        verify(screen).print(System.lineSeparator() +
+        verify(console, times(2)).print("enter command: ");
+        verify(console).print(System.lineSeparator() +
                 "-----" + System.lineSeparator() +
                 "|   |" + System.lineSeparator() +
                 "|   |" + System.lineSeparator() +
