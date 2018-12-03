@@ -1,5 +1,7 @@
-- a canvas would clear the console
-- what if coordinates of line do not represent a straight line?
-- what if rectangle coordinates do not make sense?
-- what if a try to draw a line without a canvas?
+- a canvas would clear the console? done
+- what if a try to draw a line without a canvas? done
 - how to handle quit command with polymorphism?
+
+Edge Cases
+- what if rectangle coordinates do not make sense?
+- what if coordinates of line do not represent a straight line?
