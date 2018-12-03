@@ -7,12 +7,16 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class ScreenWithCanvas implements Screen {
-    private char[][] screenState;
+    private final char[][] screenState;
 
     public ScreenWithCanvas(Canvas canvas) {
         var lines = canvasRepresentedAsList(canvas.w, canvas.h);
 
-        screenState = toCharArray(lines);
+        this.screenState = toCharArray(lines);
+    }
+
+    private ScreenWithCanvas(char[][] newScreenState) {
+        this.screenState = newScreenState;
     }
 
     @Override
@@ -27,7 +31,9 @@ class ScreenWithCanvas implements Screen {
 
     @Override
     public Screen drawLine(Line line) {
-        return null;
+        var newScreenState = drawLineOn(screenState, line);
+
+        return new ScreenWithCanvas(newScreenState);
     }
 
     @Override
@@ -42,12 +48,22 @@ class ScreenWithCanvas implements Screen {
 
     @Override
     public Screen execute(Command command) {
-        return null;
+        return command.executeWith(this);
     }
 
     private String render(char[][] screenState) {
         return toList(screenState).stream()
                 .collect(Collectors.joining(System.lineSeparator()));
+    }
+
+    private char[][] drawLineOn(char[][] screenState, Line line) {
+        char[][] newScreenState = screenState.clone();
+
+        for (int x = line.x1; x <= line.x2; x++) {
+            newScreenState[line.y1][x] = 'x';
+        }
+
+        return newScreenState;
     }
 
     private List<String> toList(char[][] screenState) {

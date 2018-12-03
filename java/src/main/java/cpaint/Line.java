@@ -3,10 +3,10 @@ package cpaint;
 import java.util.Objects;
 
 public class Line implements Command {
-    private final int x1;
-    private final int y1;
-    private final int x2;
-    private final int y2;
+    final int x1;
+    final int y1;
+    final int x2;
+    final int y2;
 
     Line(int x1, int y1, int x2, int y2) {
         this.x1 = x1;
