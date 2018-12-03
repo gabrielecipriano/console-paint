@@ -5,13 +5,21 @@ import static java.lang.String.format;
 public class EmptyScreen implements Screen {
     private static final String INITIAL_REPRESENTATION = "";
     private final String representation;
+    private final boolean isOn;
 
     public EmptyScreen() {
         this.representation = INITIAL_REPRESENTATION;
+        this.isOn = true;
     }
 
     private EmptyScreen(String representation) {
         this.representation = representation;
+        this.isOn = true;
+    }
+
+    private EmptyScreen(String representation, boolean isOn) {
+        this.representation = representation;
+        this.isOn = isOn;
     }
 
     @Override
@@ -42,6 +50,16 @@ public class EmptyScreen implements Screen {
     @Override
     public Screen drawCanvas(Canvas canvas) {
         return new ScreenWithCanvas(canvas);
+    }
+
+    @Override
+    public Screen switchOff() {
+        return new EmptyScreen(this.representation, false);
+    }
+
+    @Override
+    public boolean isOn() {
+        return isOn;
     }
 
     private Screen warnUnsupported(String unsupportedCommand) {

@@ -8,15 +8,23 @@ import java.util.stream.IntStream;
 
 class ScreenWithCanvas implements Screen {
     private final char[][] screenState;
+    private final boolean isOn;
 
     public ScreenWithCanvas(Canvas canvas) {
         var lines = canvasRepresentedAsList(canvas.w, canvas.h);
 
         this.screenState = toCharArray(lines);
+        this.isOn = true;
     }
 
     private ScreenWithCanvas(char[][] newScreenState) {
         this.screenState = newScreenState;
+        this.isOn = true;
+    }
+
+    private ScreenWithCanvas(char[][] screenState, boolean isOn) {
+        this.screenState = screenState;
+        this.isOn = isOn;
     }
 
     @Override
@@ -48,6 +56,16 @@ class ScreenWithCanvas implements Screen {
     @Override
     public Screen drawCanvas(Canvas canvas) {
         return new ScreenWithCanvas(canvas);
+    }
+
+    @Override
+    public Screen switchOff() {
+        return new ScreenWithCanvas(this.screenState, false);
+    }
+
+    @Override
+    public boolean isOn() {
+        return isOn;
     }
 
     @Override

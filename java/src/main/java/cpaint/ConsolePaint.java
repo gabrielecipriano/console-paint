@@ -21,13 +21,15 @@ public class ConsolePaint {
         Screen screen = new EmptyScreen();
         console.print("enter command: ");
 
-        while (inputSource.hasNext()) {
+        while (inputSource.hasNext() && screen.isOn()) {
             var input = inputSource.nextLine();
             var command = commandParser.interpret(input);
             screen = screen.execute(command);
 
-            console.print(System.lineSeparator() + screen.render() + System.lineSeparator());
-            console.print("enter command: ");
+            if (screen.isOn()) {
+                console.print(System.lineSeparator() + screen.render() + System.lineSeparator());
+                console.print("enter command: ");
+            }
         }
     }
 

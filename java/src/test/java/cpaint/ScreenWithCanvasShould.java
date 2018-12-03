@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ScreenWithCanvasShould {
 
@@ -86,5 +88,28 @@ class ScreenWithCanvasShould {
                         "|x  |" + System.lineSeparator() +
                         "|x  |" + System.lineSeparator() +
                         "-----"));
+    }
+
+    @Test
+    void switch_off() {
+        assertFalse(new ScreenWithCanvas(new Canvas(1, 1))
+                .execute(new QuitCommand())
+                .isOn());
+    }
+
+    @Test
+    void should_be_on_after_a_non_quit_command() {
+        assertTrue(new ScreenWithCanvas(new Canvas(8, 8))
+                .execute(new Line(1,2,3,4))
+                .isOn());
+        assertTrue(new ScreenWithCanvas(new Canvas(8, 8))
+                .execute(new Rectangle(1,2,3,4))
+                .isOn());
+        assertTrue(new ScreenWithCanvas(new Canvas(8, 8))
+                .execute(new Canvas(1,2))
+                .isOn());
+        assertTrue(new ScreenWithCanvas(new Canvas(8, 8))
+                .execute(new UnsupportedCommand(""))
+                .isOn());
     }
 }

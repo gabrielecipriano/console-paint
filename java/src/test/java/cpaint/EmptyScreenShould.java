@@ -4,12 +4,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class EmptyScreenShould {
 
     @Test
     void draw_a_canvas() {
-        Screen screenWithCanvas = new EmptyScreen()
+        var screenWithCanvas = new EmptyScreen()
                 .execute(new Canvas(1, 2));
 
         assertThat(screenWithCanvas.render(), is(new ScreenWithCanvas(new Canvas(1, 2)).render()));
@@ -17,7 +19,7 @@ class EmptyScreenShould {
 
     @Test
     void warn_user_of_an_unsupported_command() {
-        Screen screen = new EmptyScreen()
+        var screen = new EmptyScreen()
                 .execute(new UnsupportedCommand("this is the reason why I am unsupported"));
 
         assertThat(screen.render(), is("this is the reason why I am unsupported"));
@@ -32,5 +34,28 @@ class EmptyScreenShould {
         assertThat(new EmptyScreen()
                 .execute(new Rectangle(1, 2, 3, 4)).render(),
                 is("Rectangle command is supported only within a canvas"));
+    }
+
+    @Test
+    void switch_off() {
+        assertFalse(new EmptyScreen()
+                .switchOff()
+        .isOn());
+    }
+
+    @Test
+    void should_be_on_after_a_non_quit_command() {
+        assertTrue(new EmptyScreen()
+                .execute(new Line(1,2,3,4))
+                .isOn());
+        assertTrue(new EmptyScreen()
+                .execute(new Rectangle(1,2,3,4))
+                .isOn());
+        assertTrue(new EmptyScreen()
+                .execute(new Canvas(1,2))
+                .isOn());
+        assertTrue(new EmptyScreen()
+                .execute(new UnsupportedCommand(""))
+                .isOn());
     }
 }

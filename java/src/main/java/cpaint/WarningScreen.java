@@ -43,4 +43,14 @@ public class WarningScreen implements Screen{
     public Screen drawCanvas(Canvas canvas) {
         return previousScreen.drawCanvas(canvas);
     }
+
+    @Override
+    public Screen switchOff() {
+        return null;
+    }
+
+    @Override
+    public boolean isOn() {
+        return true;
+    }
 }

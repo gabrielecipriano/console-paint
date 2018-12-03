@@ -12,4 +12,8 @@ public interface Screen {
     Screen drawRectangle(Rectangle rectangle);
 
     Screen drawCanvas(Canvas canvas);
+
+    Screen switchOff();
+
+    boolean isOn();
 }
