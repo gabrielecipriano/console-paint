@@ -24,38 +24,6 @@ class ConsoleScreenShould {
     }
 
     @Test
-    @Disabled
-    void draw_a_canvas_on_an_empty_screen() {
-        var screenState = new ConsoleScreen()
-                .draw(new Canvas(3, 2), ScreenState.emptyScreen());
-
-        screenState.representWith(screen);
-
-        verify(screen)
-                .print("-----" + System.lineSeparator() +
-                        "|   |" + System.lineSeparator() +
-                        "|   |" + System.lineSeparator() +
-                        "-----");
-    }
-
-    @Test
-    @Disabled
-    void draw_a_line_within_a_canvas() {
-        ArrayList<Command> canvas = new ArrayList<>() {{ add(new Canvas(3, 2)); }};
-
-        var screenState = new ConsoleScreen()
-                .draw(new Line(1, 2, 2, 2), new ScreenState(canvas));
-
-        screenState.representWith(screen);
-
-        verify(screen)
-                .print( "-----" + System.lineSeparator() +
-                        "|   |" + System.lineSeparator() +
-                        "|xx |" + System.lineSeparator() +
-                        "-----");
-    }
-
-    @Test
     void draw_a_canvas() {
         CanvasRepresentation canvasRepresentation = new CanvasRepresentation(new Canvas(3, 2));
 
