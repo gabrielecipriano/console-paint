@@ -13,10 +13,6 @@ class ScreenWithCanvas implements Screen {
 //        this.screenState = toBidimensionalCharArray(canvas);
     }
 
-    public void representWith(Console console) {
-        console.print(render());
-    }
-
     @Override
     public String render() {
         return toList(this.screenState).stream().collect(Collectors.joining(System.lineSeparator()));
