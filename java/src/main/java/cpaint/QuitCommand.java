@@ -1,8 +1,15 @@
 package cpaint;
 
+import java.util.List;
+
 public class QuitCommand implements Command{
     @Override
     public String representation() {
+        return null;
+    }
+
+    @Override
+    public List<String> lines() {
         return null;
     }
 

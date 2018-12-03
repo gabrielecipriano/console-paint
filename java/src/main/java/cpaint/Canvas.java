@@ -7,8 +7,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Canvas implements Command {
-    private final int w;
-    private final int h;
+    public final int w;
+    public final int h;
 
     Canvas(int w, int h) {
         this.w = w;
@@ -23,6 +23,14 @@ public class Canvas implements Command {
         var lines = buildWithBorders(horizontalSide, verticalSide);
 
         return join(lines);
+    }
+
+    @Override
+    public List<String> lines() {
+        var horizontalSide = line("-", w + 2);
+        var verticalSide = "|" + line(" ", w) + "|";
+
+        return buildWithBorders(horizontalSide, verticalSide);
     }
 
     private List<String> buildWithBorders(String horizontalSide, String verticalSide) {
