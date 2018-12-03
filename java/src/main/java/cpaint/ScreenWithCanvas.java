@@ -7,15 +7,17 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class ScreenWithCanvas implements Screen {
-    private Character[][] screenState;
+    private char[][] screenState;
 
     public ScreenWithCanvas(Canvas canvas) {
-//        this.screenState = toBidimensionalCharArray(canvas);
+        var lines = lines(3, 2);
+
+        screenState = toCharArray(lines);
     }
 
     @Override
     public String render() {
-        return toList(this.screenState).stream().collect(Collectors.joining(System.lineSeparator()));
+        return toList(screenState).stream().collect(Collectors.joining(System.lineSeparator()));
     }
 
     @Override
@@ -44,35 +46,31 @@ class ScreenWithCanvas implements Screen {
     }
 
 
-    private List<String> toList(Character[][] screenState) {
+    public ScreenWithCanvas drawLine(Line line) {
+        return null;
+    }
+
+    private List<String> toList(char[][] screenState) {
         ArrayList<String> lines = new ArrayList<>();
 
         for (int i = 0; i < screenState.length; i++) {
-            Character[] characters = screenState[i];
-            String line = Arrays.toString(characters);
+            char[] characters = screenState[i];
+            String line = String.valueOf(characters);
             lines.add(line);
         }
 
         return lines;
     }
 
-    private Character[][] toBidimensionalCharArray(Canvas canvas) {
-        int w = canvas.w + 2;
-        int h = canvas.h + 2;
+    private char[][] toCharArray(List<String> strings) {
+        char[][] characters = new char[strings.size()][strings.get(0).length()];
 
-        Character[][] characters = new Character[w][h];
-
-        List<String> lines = lines(canvas.w, canvas.h);
-
-        for (int i = 0; i < w; i++) {
-            for (int j = 0; j < h; j++) {
-                char c = lines.get(j).charAt(i);
-                characters[j][i] = c;
-            }
-        }
+        IntStream.range(0, strings.size())
+                .forEach(i -> characters[i] = strings.get(i).toCharArray());
 
         return characters;
     }
+
 
     private List<String> lines(int w, int h) {
         var horizontalSide = line("-", w + 2);
@@ -80,6 +78,7 @@ class ScreenWithCanvas implements Screen {
 
         return buildWithBorders(horizontalSide, verticalSide, h);
     }
+
 
     private List<String> buildWithBorders(String horizontalSide, String verticalSide, int h) {
         var lines = new ArrayList<String>();
@@ -89,12 +88,9 @@ class ScreenWithCanvas implements Screen {
         return lines;
     }
 
+
     private String line(final String symbol, int count) {
         return symbol.repeat(count);
-    }
-
-    public ScreenWithCanvas drawLine(Line line) {
-        return null;
     }
 
     @Override
