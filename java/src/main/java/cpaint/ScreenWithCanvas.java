@@ -105,4 +105,11 @@ class ScreenWithCanvas implements Screen {
     public int hashCode() {
         return Arrays.hashCode(screenState);
     }
+
+    @Override
+    public String toString() {
+        return "ScreenWithCanvas{" +
+                "screenState=" + Arrays.toString(screenState) +
+                '}';
+    }
 }
