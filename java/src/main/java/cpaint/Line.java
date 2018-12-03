@@ -16,11 +16,6 @@ public class Line implements Command {
     }
 
     @Override
-    public String representation() {
-        return null;
-    }
-
-    @Override
     public Screen executeWith(Screen screen) {
         return screen.drawLine();
     }

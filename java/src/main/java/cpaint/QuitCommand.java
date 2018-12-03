@@ -1,10 +1,6 @@
 package cpaint;
 
 public class QuitCommand implements Command{
-    @Override
-    public String representation() {
-        return null;
-    }
 
     @Override
     public Screen executeWith(Screen screen) {

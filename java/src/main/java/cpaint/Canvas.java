@@ -16,16 +16,6 @@ public class Canvas implements Command {
     }
 
     @Override
-    public String representation() {
-        var horizontalSide = line("-", w + 2);
-        var verticalSide = "|" + line(" ", w) + "|";
-
-        var lines = buildWithBorders(horizontalSide, verticalSide);
-
-        return join(lines);
-    }
-
-    @Override
     public Screen executeWith(Screen screen) {
         return screen.drawCanvas(this);
     }

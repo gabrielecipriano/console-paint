@@ -10,7 +10,7 @@ class ScreenWithCanvas implements Screen {
     private char[][] screenState;
 
     public ScreenWithCanvas(Canvas canvas) {
-        var lines = lines(3, 2);
+        var lines = lines(canvas.w, canvas.h);
 
         screenState = toCharArray(lines);
     }

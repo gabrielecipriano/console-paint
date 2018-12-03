@@ -10,11 +10,6 @@ public class UnsupportedCommand implements Command{
     }
 
     @Override
-    public String representation() {
-        return null;
-    }
-
-    @Override
     public Screen executeWith(Screen screen) {
         return screen.representText(description);
     }
