@@ -31,7 +31,7 @@ class ScreenWithCanvas implements Screen {
 
     @Override
     public Screen drawLine(Line line) {
-        var newScreenState = drawLineOn(screenState, line);
+        var newScreenState = drawLineOn(line, 'x', screenState.clone());
 
         return new ScreenWithCanvas(newScreenState);
     }
@@ -56,14 +56,13 @@ class ScreenWithCanvas implements Screen {
                 .collect(Collectors.joining(System.lineSeparator()));
     }
 
-    private char[][] drawLineOn(char[][] screenState, Line line) {
-        char[][] newScreenState = screenState.clone();
+    private char[][] drawLineOn(Line line, char symbol, char[][] screenState) {
+        IntStream.rangeClosed(line.y1, line.y2).forEach(y ->
+                IntStream.rangeClosed(line.x1, line.x2)
+                        .forEach(x -> screenState[y][x] = symbol)
+        );
 
-        for (int x = line.x1; x <= line.x2; x++) {
-            newScreenState[line.y1][x] = 'x';
-        }
-
-        return newScreenState;
+        return screenState;
     }
 
     private List<String> toList(char[][] screenState) {
