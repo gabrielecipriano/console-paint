@@ -10,7 +10,7 @@ class ScreenWithCanvas implements Screen {
     private char[][] screenState;
 
     public ScreenWithCanvas(Canvas canvas) {
-        var lines = lines(canvas.w, canvas.h);
+        var lines = canvasRepresentedAsList(canvas.w, canvas.h);
 
         screenState = toCharArray(lines);
     }
@@ -46,7 +46,8 @@ class ScreenWithCanvas implements Screen {
     }
 
     private String render(char[][] screenState) {
-        return toList(screenState).stream().collect(Collectors.joining(System.lineSeparator()));
+        return toList(screenState).stream()
+                .collect(Collectors.joining(System.lineSeparator()));
     }
 
     private List<String> toList(char[][] screenState) {
@@ -65,7 +66,7 @@ class ScreenWithCanvas implements Screen {
     }
 
 
-    private List<String> lines(int w, int h) {
+    private List<String> canvasRepresentedAsList(int w, int h) {
         var horizontalSide = line("-", w + 2);
         var verticalSide = "|" + line(" ", w) + "|";
 
@@ -75,9 +76,11 @@ class ScreenWithCanvas implements Screen {
 
     private List<String> buildWithBorders(String horizontalSide, String verticalSide, int h) {
         var lines = new ArrayList<String>();
+
         lines.add(horizontalSide);
         IntStream.range(0, h).forEach(i -> lines.add(verticalSide));
         lines.add(horizontalSide);
+
         return lines;
     }
 
