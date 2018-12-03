@@ -1,10 +1,6 @@
 package cpaint;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Canvas implements Command {
     public final int w;
@@ -18,22 +14,6 @@ public class Canvas implements Command {
     @Override
     public Screen executeWith(Screen screen) {
         return screen.drawCanvas(this);
-    }
-
-    private List<String> buildWithBorders(String horizontalSide, String verticalSide) {
-        var lines = new ArrayList<String>();
-        lines.add(horizontalSide);
-        IntStream.range(0, h).forEach(i -> lines.add(verticalSide));
-        lines.add(horizontalSide);
-        return lines;
-    }
-
-    private String line(final String symbol, int count) {
-        return symbol.repeat(count);
-    }
-
-    private String join(List<String> draw) {
-        return draw.stream().collect(Collectors.joining(System.lineSeparator()));
     }
 
     @Override

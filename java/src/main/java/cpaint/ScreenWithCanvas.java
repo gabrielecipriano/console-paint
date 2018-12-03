@@ -17,7 +17,7 @@ class ScreenWithCanvas implements Screen {
 
     @Override
     public String render() {
-        return toList(screenState).stream().collect(Collectors.joining(System.lineSeparator()));
+        return render(this.screenState);
     }
 
     @Override
@@ -45,16 +45,14 @@ class ScreenWithCanvas implements Screen {
         return null;
     }
 
+    private String render(char[][] screenState) {
+        return toList(screenState).stream().collect(Collectors.joining(System.lineSeparator()));
+    }
+
     private List<String> toList(char[][] screenState) {
-        ArrayList<String> lines = new ArrayList<>();
-
-        for (int i = 0; i < screenState.length; i++) {
-            char[] characters = screenState[i];
-            String line = String.valueOf(characters);
-            lines.add(line);
-        }
-
-        return lines;
+        return Arrays.stream(screenState)
+                .map(String::valueOf)
+                .collect(Collectors.toList());
     }
 
     private char[][] toCharArray(List<String> strings) {
