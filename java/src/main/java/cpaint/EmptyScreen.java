@@ -3,6 +3,13 @@ package cpaint;
 public class EmptyScreen implements Screen {
     private String representation;
 
+    public EmptyScreen() {
+    }
+
+    private EmptyScreen(String representation) {
+        this.representation = representation;
+    }
+
     @Override
     public Screen execute(Command command) {
         return command.executeWith(this);
@@ -15,7 +22,6 @@ public class EmptyScreen implements Screen {
 
     @Override
     public Screen representText(String description) {
-        this.representation = description;
-        return this;
+        return new EmptyScreen(description);
     }
 }
