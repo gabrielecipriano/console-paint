@@ -74,7 +74,7 @@ class ScreenWithCanvas implements Screen {
         return characters;
     }
 
-    public List<String> lines(int w, int h) {
+    private List<String> lines(int w, int h) {
         var horizontalSide = line("-", w + 2);
         var verticalSide = "|" + line(" ", w) + "|";
 
