@@ -25,6 +25,11 @@ public class Canvas implements Command {
         return join(lines);
     }
 
+    @Override
+    public Screen executeWith(Screen screen) {
+        return null;
+    }
+
     private List<String> buildWithBorders(String horizontalSide, String verticalSide) {
         var lines = new ArrayList<String>();
         lines.add(horizontalSide);

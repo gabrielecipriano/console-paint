@@ -21,6 +21,11 @@ public class Line implements Command {
     }
 
     @Override
+    public Screen executeWith(Screen screen) {
+        return null;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;

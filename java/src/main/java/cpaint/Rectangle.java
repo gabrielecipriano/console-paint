@@ -21,6 +21,11 @@ public class Rectangle implements Command{
     }
 
     @Override
+    public Screen executeWith(Screen screen) {
+        return null;
+    }
+
+    @Override
     public String toString() {
         return "Rectangle{" +
                 "x1=" + x1 +

@@ -9,11 +9,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
-class ConsoleScreenShould {
+class CanvasRepresentationShould {
 
     private Console console;
 
@@ -51,7 +50,7 @@ class ConsoleScreenShould {
     }
 
 
-    private class CanvasRepresentation {
+    private class CanvasRepresentation implements Screen {
         private Character[][] screenState;
 
         public CanvasRepresentation(Canvas canvas) {
@@ -59,8 +58,19 @@ class ConsoleScreenShould {
         }
 
         public void representWith(Console console) {
-            console.print(toList(this.screenState).stream().collect(Collectors.joining(System.lineSeparator())));
+            console.print(representation());
         }
+
+        @Override
+        public String representation() {
+            return toList(this.screenState).stream().collect(Collectors.joining(System.lineSeparator()));
+        }
+
+        @Override
+        public Screen execute(Command command) {
+            return null;
+        }
+
 
         private List<String> toList(Character[][] screenState) {
             ArrayList<String> lines = new ArrayList<>();

@@ -7,6 +7,11 @@ public class QuitCommand implements Command{
     }
 
     @Override
+    public Screen executeWith(Screen screen) {
+        return null;
+    }
+
+    @Override
     public String toString() {
         return "QuitCommand{}";
     }
