@@ -74,4 +74,17 @@ class ScreenWithCanvasShould {
 
         assertThat(screen.render(), is("this is the reason why I am unsupported"));
     }
+
+    @Test
+    void resume_with_previous_state_after_a_warning() {
+        var screen = new ScreenWithCanvas(new Canvas(3, 2))
+                .execute(new UnsupportedCommand("warning message"))
+                .execute(new Line(1, 1, 1, 2));
+
+        assertThat(screen.render(), is(
+                        "-----" + System.lineSeparator() +
+                        "|x  |" + System.lineSeparator() +
+                        "|x  |" + System.lineSeparator() +
+                        "-----"));
+    }
 }
