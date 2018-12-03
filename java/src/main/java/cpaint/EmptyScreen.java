@@ -1,9 +1,10 @@
 package cpaint;
 
 public class EmptyScreen implements Screen {
-    private String representation;
+    private final String representation;
 
     public EmptyScreen() {
+        this.representation = "";
     }
 
     private EmptyScreen(String representation) {
