@@ -16,7 +16,7 @@ public class UnsupportedCommand implements Command{
 
     @Override
     public Screen executeWith(Screen screen) {
-        return null;
+        return screen.representText(description);
     }
 
     @Override

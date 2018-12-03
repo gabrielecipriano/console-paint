@@ -27,7 +27,7 @@ public class ConsolePaint {
             screen = screen.execute(command);
             console.print(System.lineSeparator() + command.representation() + System.lineSeparator());
 
-            console.print(screen.representation());
+//            console.print(screen.representation());
             console.print("enter command: ");
         }
     }

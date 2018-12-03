@@ -1,6 +1,7 @@
 package cpaint;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.stream.IntStream;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
+@Disabled
 class CanvasRepresentationShould {
 
     private Console console;
@@ -64,6 +66,11 @@ class CanvasRepresentationShould {
         @Override
         public String representation() {
             return toList(this.screenState).stream().collect(Collectors.joining(System.lineSeparator()));
+        }
+
+        @Override
+        public Screen representText(String description) {
+            return null;
         }
 
         @Override
