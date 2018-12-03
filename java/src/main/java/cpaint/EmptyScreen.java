@@ -3,10 +3,11 @@ package cpaint;
 import static java.lang.String.format;
 
 public class EmptyScreen implements Screen {
+    private static final String INITIAL_REPRESENTATION = "";
     private final String representation;
 
     public EmptyScreen() {
-        this.representation = "";
+        this.representation = INITIAL_REPRESENTATION;
     }
 
     private EmptyScreen(String representation) {
