@@ -47,7 +47,7 @@ class ScreenWithCanvas implements Screen {
 
     @Override
     public Screen drawCanvas(Canvas canvas) {
-        return null;
+        return new ScreenWithCanvas(canvas);
     }
 
     @Override

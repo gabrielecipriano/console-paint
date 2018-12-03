@@ -54,4 +54,16 @@ class ScreenWithCanvasShould {
                         "|xxx|" + System.lineSeparator() +
                         "-----"));
     }
+
+    @Test
+    void draw_a_new_canvas() {
+        var screen = new ScreenWithCanvas(new Canvas(3, 3))
+                .drawLine(new Line(1, 1, 1, 2))
+                .drawCanvas(new Canvas(2, 1));
+
+        assertThat(screen.render(), is(
+                        "----" + System.lineSeparator() +
+                        "|  |" + System.lineSeparator() +
+                        "----"));
+    }
 }
