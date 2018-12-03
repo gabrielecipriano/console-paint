@@ -5,7 +5,7 @@ import java.util.Objects;
 public class UnsupportedCommand implements Command{
     private String description;
 
-    public UnsupportedCommand(String description) {
+    UnsupportedCommand(String description) {
         this.description = description;
     }
 

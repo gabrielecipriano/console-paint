@@ -123,6 +123,35 @@ class AcceptanceTest {
                         "--------------",
                         "enter command: "));
     }
+
+    @Test
+    void fail_to_parse_unexpected_command_but_resume() throws Exception {
+        check(withInput(
+                "C 20 5",
+                "Z 2 1 3",
+                "L 1 1 2 1"),
+
+                outputIs("enter command: ",
+                        "----------------------",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "----------------------",
+                        "enter command: ",
+                        "Command descriptor {Z} does not match any known",
+                        "enter command: ",
+                        "----------------------",
+                        "|xx                  |",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "|                    |",
+                        "----------------------",
+                        "enter command: "));
+    }
+
     private void check(Stream<String> inputs, Stream<String> outputs) throws IOException {
         executeTrappingSystemOut(
                 (consoleOutput) -> {

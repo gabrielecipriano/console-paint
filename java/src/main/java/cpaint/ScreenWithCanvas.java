@@ -26,7 +26,7 @@ class ScreenWithCanvas implements Screen {
 
     @Override
     public Screen representText(String description) {
-        return null;
+        return new EmptyScreen().representText(description);
     }
 
     @Override
