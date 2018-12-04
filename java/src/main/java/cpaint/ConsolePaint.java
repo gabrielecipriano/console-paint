@@ -25,7 +25,7 @@ class ConsolePaint {
     private void loop(Scanner inputSource, Screen screen) {
         var input = console.getNextCommand(inputSource);
         var command = commandParser.interpret(input);
-        
+
         screen = screen.execute(command);
 
         if (screen.isOn()) {
