@@ -48,7 +48,7 @@ class CommandParser {
 
         if (inputComponents.size() != patternComponent.size()) {
             return new UnsupportedCommand(
-                    format("{%s} command descriptor follows the following pattern: '%s'", commandDescriptor(input), pattern));
+                    format("Command descriptor {%s} follows the following pattern: '%s'", commandDescriptor(input), pattern));
         }
 
         return commandBuilder.apply(compilePattern(patternComponent, inputComponents));

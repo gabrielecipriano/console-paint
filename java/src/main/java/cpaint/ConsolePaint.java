@@ -16,7 +16,7 @@ class ConsolePaint {
         Screen screen = new EmptyScreen();
         console.print("enter command: ");
 
-        while (inputSource.hasNext() && screen.isOn()) {
+        while (screen.isOn() && inputSource.hasNext()) {
             var input = inputSource.nextLine();
             var command = commandParser.interpret(input);
             screen = screen.execute(command);
