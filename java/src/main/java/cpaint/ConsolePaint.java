@@ -2,7 +2,6 @@ package cpaint;
 
 import java.io.InputStream;
 import java.util.Scanner;
-import java.util.function.BiFunction;
 
 class ConsolePaint {
     private Console console;
@@ -20,25 +19,21 @@ class ConsolePaint {
     }
 
     private void executeWith(Scanner inputSource) {
-        whileScreenIsOn(inputSource, (input, screen) -> {
-            var command = commandParser.interpret(input);
-            return screen.execute(command);
-        });
+        loop(inputSource, new EmptyScreen());
     }
 
-    private void whileScreenIsOn(Scanner inputSource, BiFunction<String, Screen, Screen> updateScreenForCommand) {
-        loop(inputSource, updateScreenForCommand, new EmptyScreen());
-    }
-
-    private void loop(Scanner inputSource, BiFunction<String, Screen, Screen> updateScreenForCommand, Screen screen) {
-        screen = updateScreenForCommand.apply(console.getNextCommand(inputSource), screen);
+    private void loop(Scanner inputSource, Screen screen) {
+        var input = console.getNextCommand(inputSource);
+        var command = commandParser.interpret(input);
+        
+        screen = screen.execute(command);
 
         if (screen.isOn()) {
             console.print(System.lineSeparator() +
                     screen.render() +
                     System.lineSeparator());
 
-            loop(inputSource, updateScreenForCommand, screen);
+            loop(inputSource, screen);
         }
     }
 }
