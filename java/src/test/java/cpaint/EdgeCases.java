@@ -9,7 +9,8 @@ class EdgeCases {
     void not_support_drawing_without_a_canvas_but_resume() throws Exception{
         check(withInput(
                 "L 1 3 7 3",
-                "R 2 3 4 3"),
+                "R 2 3 4 3",
+                "Q"),
 
                 outputIs("enter command: ",
                         "Line command is supported only within a canvas",
@@ -24,7 +25,8 @@ class EdgeCases {
                 "C 20 5",
                 "Z 2 1 3",
                 "R 2",
-                "L 1 1 2 1"),
+                "L 1 1 2 1",
+                "Q"),
 
                 outputIs("enter command: ",
                         "----------------------",
@@ -54,7 +56,8 @@ class EdgeCases {
         check(withInput(
                 "C 20 5",
                 "L 1 3 7 3",
-                "C 12 5"),
+                "C 12 5",
+                "Q"),
 
                 outputIs("enter command: ",
                         "----------------------",

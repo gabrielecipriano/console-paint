@@ -30,7 +30,7 @@ class ConsolePaint {
         Screen screen = new EmptyScreen();
         console.print("enter command: ");
 
-        while (screen.isOn() && inputSource.hasNext()) {
+        while (screen.isOn()) {
             var input = inputSource.nextLine();
 
             screen = updateScreenForCommand.apply(input, screen);
