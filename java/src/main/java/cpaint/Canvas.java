@@ -3,8 +3,8 @@ package cpaint;
 import java.util.Objects;
 
 public class Canvas implements Command {
-    public final int w;
-    public final int h;
+    final int w;
+    final int h;
 
     Canvas(int w, int h) {
         this.w = w;
