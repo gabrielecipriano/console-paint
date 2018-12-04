@@ -1,5 +1,17 @@
 # Drawing Program
 
+## How to run the program
+
+## Usage
+
+First, `Java 10` is required for compilation:
+
+```sh
+$ ./gradlew clean jar && java -jar build/libs/console-paint.jar
+```
+
+## Assignment
+
 Please implement a simple text (ASCII) based drawing program (something similar to a simplified version of Paint). The basic program
 should allow users to:
 
