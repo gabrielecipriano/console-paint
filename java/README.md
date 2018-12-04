@@ -4,10 +4,11 @@
 
 ## Usage
 
-First, `Java 10` is required for compilation:
+First, `Java 10+` and `Gradle 4.7+` are required for compilation:
 
+execute:
 ```sh
-$ ./gradlew clean jar --quiet && java -jar build/libs/console-paint.jar
+$ gradle clean jar --quiet && java -jar build/libs/console-paint.jar
 ```
 
 ## Assignment
