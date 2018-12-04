@@ -116,18 +116,4 @@ class DrawableScreen implements Screen {
                 .map(String::valueOf)
                 .collect(Collectors.toList());
     }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DrawableScreen that = (DrawableScreen) o;
-        return Arrays.equals(screenState, that.screenState);
-    }
-
-    @Override
-    public int hashCode() {
-        return Arrays.hashCode(screenState);
-    }
 }
