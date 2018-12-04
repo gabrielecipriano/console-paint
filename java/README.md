@@ -7,7 +7,7 @@
 First, `Java 10` is required for compilation:
 
 ```sh
-$ ./gradlew clean jar && java -jar build/libs/console-paint.jar
+$ ./gradlew clean jar --quiet && java -jar build/libs/console-paint.jar
 ```
 
 ## Assignment
