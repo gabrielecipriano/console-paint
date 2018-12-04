@@ -30,15 +30,17 @@ class ConsolePaint {
         Screen screen = new EmptyScreen();
         console.print("enter command: ");
 
-        while (screen.isOn()) {
-            var input = inputSource.nextLine();
+        loop(inputSource, updateScreenForCommand, screen);
+    }
 
-            screen = updateScreenForCommand.apply(input, screen);
+    private void loop(Scanner inputSource, BiFunction<String, Screen, Screen> updateScreenForCommand, Screen screen) {
+        var input = inputSource.nextLine();
+        screen = updateScreenForCommand.apply(input, screen);
 
-            if (screen.isOn()) {
-                console.print(System.lineSeparator() + screen.render() + System.lineSeparator());
-                console.print("enter command: ");
-            }
+        if (screen.isOn()) {
+            console.print(System.lineSeparator() + screen.render() + System.lineSeparator());
+            console.print("enter command: ");
+            loop(inputSource, updateScreenForCommand, screen);
         }
     }
 }
