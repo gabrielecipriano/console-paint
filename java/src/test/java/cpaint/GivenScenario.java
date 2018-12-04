@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static cpaint.DSLAcceptanceTests.*;
 
-class GivenScenarios {
+class GivenScenario {
     @Test
     void draw_a_canvas_a_line_a_rectangle_and_quit_the_program() throws Exception {
         check(withInput(

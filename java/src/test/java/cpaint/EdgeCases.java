@@ -23,6 +23,7 @@ class EdgeCases {
         check(withInput(
                 "C 20 5",
                 "Z 2 1 3",
+                "R 2",
                 "L 1 1 2 1"),
 
                 outputIs("enter command: ",
@@ -35,6 +36,8 @@ class EdgeCases {
                         "----------------------",
                         "enter command: ",
                         "Command descriptor {Z} does not match any known",
+                        "enter command: ",
+                        "Command descriptor {R} follows the following pattern: 'R x1 y1 x2 y2'",
                         "enter command: ",
                         "----------------------",
                         "|xx                  |",
