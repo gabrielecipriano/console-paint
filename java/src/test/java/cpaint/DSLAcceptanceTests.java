@@ -19,7 +19,7 @@ class DSLAcceptanceTests {
         executeTrappingSystemOut(
                 (consoleOutput) -> {
 
-                    ConsolePaint.compute(new StringInputStream(join(inputs)));
+                    ConsolePaint.with(new StringInputStream(join(inputs)));
 
                     assertThat(consoleOutput.toString(), is(join(outputs)));
                 });
