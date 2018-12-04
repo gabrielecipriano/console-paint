@@ -76,8 +76,8 @@ class DrawableScreen implements Screen {
         return new DrawableScreen(newScreenState);
     }
 
-    private DrawableScreen drawInitialCanvas(Canvas canvas) {
-        return this.drawRectangleWith(new Rectangle(0, 0, canvas.w + 1, canvas.h + 1), '|', '-');
+    private void drawInitialCanvas(Canvas canvas) {
+        this.drawRectangleWith(new Rectangle(0, 0, canvas.w + 1, canvas.h + 1), '|', '-');
     }
 
     private DrawableScreen drawRectangleWith(Rectangle rectangle, char verticalSymbol, char horizontalSymbol) {

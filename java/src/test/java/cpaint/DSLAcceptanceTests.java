@@ -5,7 +5,6 @@ import org.apache.tools.ant.filters.StringInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
-import java.util.Scanner;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 
