@@ -27,9 +27,7 @@ class ConsolePaint {
     }
 
     private void whileScreenIsOn(Scanner inputSource, BiFunction<String, Screen, Screen> updateScreenForCommand) {
-        Screen screen = new EmptyScreen();
-
-        loop(inputSource, updateScreenForCommand, screen);
+        loop(inputSource, updateScreenForCommand, new EmptyScreen());
     }
 
     private void loop(Scanner inputSource, BiFunction<String, Screen, Screen> updateScreenForCommand, Screen screen) {
@@ -39,7 +37,7 @@ class ConsolePaint {
             console.print(System.lineSeparator() +
                     screen.render() +
                     System.lineSeparator());
-            
+
             loop(inputSource, updateScreenForCommand, screen);
         }
     }

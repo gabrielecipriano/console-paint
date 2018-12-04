@@ -2,6 +2,7 @@
 - what if a try to draw a line without a canvas? done
 - how to handle quit command with polymorphism? no
 
-Edge Cases
+Edge Cases not handled
 - what if rectangle coordinates do not make sense?
 - what if coordinates of line do not represent a straight line?
+- what if drawing is out of the canvas
