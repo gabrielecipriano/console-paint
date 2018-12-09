@@ -1,7 +1,5 @@
 # Drawing Program
 
-## How to run the program
-
 ## Usage
 
 First, `Java 10+` and `Gradle 4.7+` are required for compilation:
@@ -13,15 +11,13 @@ $ gradle clean jar --quiet && java -jar build/libs/console-paint.jar
 
 ## Assignment
 
-Please implement a simple text (ASCII) based drawing program (something similar to a simplified version of Paint). The basic program
+Implement a simple text (ASCII) based drawing program (something similar to a simplified version of Paint). The basic program
 should allow users to:
 
 * Create a new canvas
 * Draw on the canvas using text based commands
 * Quit the program
 
-Your solution should run 'out of the box' and interactively (i.e. it should respond to commands entered manually, see below). If you want to
-share comments or instructions, please include them in a README.
 
 ## Commands
 
