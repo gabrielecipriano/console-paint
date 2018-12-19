@@ -26,4 +26,11 @@ public class UnsupportedCommand implements Command{
     public int hashCode() {
         return Objects.hash(description);
     }
+
+    @Override
+    public String toString() {
+        return "UnsupportedCommand{" +
+                "description='" + description + '\'' +
+                '}';
+    }
 }

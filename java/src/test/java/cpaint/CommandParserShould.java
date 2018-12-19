@@ -15,6 +15,7 @@ class CommandParserShould {
         assertThat(commandParser.interpret("L 1 3 7 3"), is(new Line(1, 3, 7, 3)));
         assertThat(commandParser.interpret("R 2 5 6 7"), is(new Rectangle(2, 5, 6, 7)));
         assertThat(commandParser.interpret("Q"), is(new QuitCommand()));
+        assertThat(commandParser.interpret("U"), is(new UndoCommand()));
     }
 
     @Test

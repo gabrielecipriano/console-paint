@@ -18,6 +18,8 @@ class CommandParser {
         return match(input, rules(
                 new PatternRule("Q", map -> new QuitCommand()),
 
+                new PatternRule("U", map -> new UndoCommand()),
+
                 new PatternRule("C w h", (map)
                         -> new Canvas(toInt(map.get("w")), toInt(map.get("h")))),
 
