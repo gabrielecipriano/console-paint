@@ -12,6 +12,7 @@ class GivenScenario {
                 "L 1 3 7 3",
                 "L 7 1 7 3",
                 "R 15 2 20 5",
+                "U",
                 "Q"),
 
                 outputIs("enter command: ",
@@ -45,6 +46,14 @@ class GivenScenario {
                         "|xxxxxxx       x    x|",
                         "|              x    x|",
                         "|              xxxxxx|",
+                        "----------------------",
+                        "enter command: ",
+                        "----------------------",
+                        "|      x             |",
+                        "|      x             |",
+                        "|xxxxxxx             |",
+                        "|                    |",
+                        "|                    |",
                         "----------------------",
                         "enter command: "));
     }
