@@ -1,5 +1,6 @@
 package cpaint;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -95,6 +96,36 @@ class DrawableScreenShould {
         assertFalse(new DrawableScreen(new Canvas(1, 1))
                 .execute(new QuitCommand())
                 .isOn());
+    }
+
+    @Test
+    @Disabled
+    void undo_last_command() {
+        var screen = new DrawableScreen(new Canvas(3, 2))
+                .execute(new Line(1, 1, 1, 2))
+                .execute(new UndoCommand());
+
+        assertThat(screen.render(), is(
+                        "-----" + System.lineSeparator() +
+                        "|   |" + System.lineSeparator() +
+                        "|   |" + System.lineSeparator() +
+                        "-----" + System.lineSeparator()
+        ));
+    }
+
+    @Test
+    void should_not_change_internal_state() {
+        var screenWithACanvas = new DrawableScreen(new Canvas(3, 2));
+
+        screenWithACanvas.execute(new Line(1, 1, 1, 2));
+
+        assertThat(screenWithACanvas.render(), is(
+                        "-----" + System.lineSeparator() +
+                        "|   |" + System.lineSeparator() +
+                        "|   |" + System.lineSeparator() +
+                        "-----" + System.lineSeparator()
+
+        ));
     }
 
     @Test

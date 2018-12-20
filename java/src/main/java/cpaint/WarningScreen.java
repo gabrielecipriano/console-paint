@@ -54,4 +54,9 @@ public class WarningScreen implements Screen{
     public boolean isOn() {
         return true;
     }
+
+    @Override
+    public Screen undo() {
+        return null;
+    }
 }

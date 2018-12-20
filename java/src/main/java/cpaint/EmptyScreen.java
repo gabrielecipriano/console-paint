@@ -62,6 +62,11 @@ public class EmptyScreen implements Screen {
         return isOn;
     }
 
+    @Override
+    public Screen undo() {
+        return null;
+    }
+
     private Screen warnUnsupported(String unsupportedCommand) {
         return representText(format("%s command is supported only within a canvas", unsupportedCommand));
     }

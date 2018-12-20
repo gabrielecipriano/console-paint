@@ -3,7 +3,7 @@ package cpaint;
 public class UndoCommand implements Command{
     @Override
     public Screen executeWith(Screen screen) {
-        return screen.representText("Undo command not yet implemented");
+        return screen.undo();
     }
 
     @Override

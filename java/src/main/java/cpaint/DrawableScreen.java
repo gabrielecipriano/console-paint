@@ -8,22 +8,26 @@ import java.util.stream.IntStream;
 class DrawableScreen implements Screen {
     private final char[][] screenState;
     private final boolean isOn;
+    private Screen previousScreen;
 
     DrawableScreen(Canvas canvas) {
+        this.previousScreen = new EmptyScreen();
         this.isOn = true;
         var characters = charArrayFor(canvas);
         this.screenState = this.initialiseState(characters);
         drawInitialCanvas(canvas);
     }
 
-    private DrawableScreen(char[][] newScreenState) {
+    private DrawableScreen(char[][] newScreenState, Screen previousScreen) {
         this.screenState = newScreenState;
+        this.previousScreen = previousScreen;
         this.isOn = true;
     }
 
-    private DrawableScreen(char[][] screenState, boolean isOn) {
+    private DrawableScreen(char[][] screenState, boolean isOn, Screen previousScreen) {
         this.screenState = screenState;
         this.isOn = isOn;
+        this.previousScreen = previousScreen;
     }
 
     @Override
@@ -53,12 +57,17 @@ class DrawableScreen implements Screen {
 
     @Override
     public Screen switchOff() {
-        return new DrawableScreen(this.screenState, false);
+        return new DrawableScreen(this.screenState, false, this);
     }
 
     @Override
     public boolean isOn() {
         return isOn;
+    }
+
+    @Override
+    public Screen undo() {
+        return previousScreen;
     }
 
     @Override
@@ -71,9 +80,11 @@ class DrawableScreen implements Screen {
     }
 
     private DrawableScreen drawLineWith(Line line, char symbol) {
-        char[][] newScreenState = drawLineOn(line, symbol, screenState.clone());
+        char[][] clone = Arrays.copyOf(screenState, screenState.length);
 
-        return new DrawableScreen(newScreenState);
+        char[][] newScreenState = drawLineOn(line, symbol, clone);
+
+        return new DrawableScreen(newScreenState, this);
     }
 
     private void drawInitialCanvas(Canvas canvas) {

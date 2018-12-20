@@ -16,4 +16,6 @@ public interface Screen {
     Screen switchOff();
 
     boolean isOn();
+
+    Screen undo();
 }
